@@ -17,10 +17,7 @@
     .contenedor-principal {
       flex: 1;
     }
-    h1 {
-      color: #d97a9b;
-    }
-    h2 {
+    h1, h2 {
       color: #d97a9b;
     }
     label {
@@ -145,11 +142,9 @@
       const costoFragancia = parseFloat(document.getElementById('costoFragancia').value);
       const tamanoFragancia = parseFloat(document.getElementById('tamanoFragancia').value);
       const porcentajeFragancia = parseFloat(document.getElementById('porcentajeFragancia').value);
-
       const costoColorante = parseFloat(document.getElementById('costoColorante').value);
       const usoColorante = parseFloat(document.getElementById('usoColorante').value);
       const cantidadColorante = parseFloat(document.getElementById('cantidadColorante').value);
-
       const costoMecha = parseFloat(document.getElementById('costoMecha').value);
       const costoFrasco = parseFloat(document.getElementById('costoFrasco').value);
       const costoEtiqueta = parseFloat(document.getElementById('costoEtiqueta').value);
@@ -173,6 +168,7 @@
 
       const costoTotal = costoCeraPorVela + costoFraganciaPorVela + costoColorantePorVela + costoMecha + costoFrasco + costoEtiqueta + costoIndirecto;
       const precioVenta = costoTotal * (1 + margen / 100);
+      const ganancia = precioVenta - costoTotal;
 
       document.getElementById('resultado').innerHTML =
         `<p><strong>Costo de cera:</strong> $${costoCeraPorVela.toFixed(2)}</p>` +
@@ -183,7 +179,8 @@
         `<p><strong>Etiqueta:</strong> $${costoEtiqueta.toFixed(2)}</p>` +
         `<p><strong>Costos indirectos:</strong> $${costoIndirecto.toFixed(2)}</p>` +
         `<hr><p><strong>Costo total por vela:</strong> $${costoTotal.toFixed(2)}</p>` +
-        `<p><strong>Precio sugerido de venta (con ${margen}% de margen):</strong> $${precioVenta.toFixed(2)}</p>`;
+        `<p><strong>Precio sugerido de venta (con ${margen}% de margen):</strong> $${precioVenta.toFixed(2)}</p>` +
+        `<p><strong>Ganancia estimada por vela:</strong> $${ganancia.toFixed(2)}</p>`;
     }
   </script>
 </body>
