@@ -96,13 +96,13 @@
     <label>Costo de la etiqueta (por vela): ($)</label>
     <input type="number" id="costoEtiqueta">
     <label>Costos indirectos (por vela): ($)</label>
-    <input type="number" id="costoIndirecto" value="0">
+    <input type="number" id="costoIndirecto" value="$0">
   </div>
 
   <div class="section">
     <h2>Margen de Beneficio</h2>
     <label>Margen de beneficio deseado (%):</label>
-    <input type="number" id="margen" value="35">
+    <input type="number" id="margen" value="35%">
   </div>
 
   <button onclick="calcularCosto()">Calcular</button>
