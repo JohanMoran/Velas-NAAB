@@ -129,6 +129,12 @@
       <input type="number" id="margen" value="35">
     </div>
 
+    <div class="section">
+      <h2>Producción</h2>
+      <label>Número de velas a producir:</label>
+      <input type="number" id="cantidadVelas" value="1">
+    </div>
+
     <button onclick="calcularCosto()">Calcular</button>
   </div>
 
@@ -152,6 +158,13 @@
       const costoEtiqueta = parseFloat(document.getElementById('costoEtiqueta').value);
       const costoIndirecto = parseFloat(document.getElementById('costoIndirecto').value);
       const margen = parseFloat(document.getElementById('margen').value);
+      const cantidadVelas = parseFloat(document.getElementById('cantidadVelas').value);
+
+      if ([costoCera, gramosCera, costoFragancia, tamanoFragancia, porcentajeFragancia, costoColorante, usoColorante, cantidadColorante, costoMecha, costoFrasco, costoEtiqueta, costoIndirecto, margen, cantidadVelas].some(isNaN)) {
+        alert("Por favor completa todos los campos antes de calcular.");
+        return;
+      }
+
       const costoPorGramoCera = costoCera / 1000;
       const costoCeraPorVela = costoPorGramoCera * gramosCera;
 
@@ -162,21 +175,29 @@
       const costoColorantePorGramo = costoColorante / cantidadColorante;
       const costoColorantePorVela = usoColorante * costoColorantePorGramo;
 
-      const costoTotal = costoCeraPorVela + costoFraganciaPorVela + costoColorantePorVela + costoMecha + costoFrasco + costoEtiqueta + costoIndirecto;
-      const precioVenta = costoTotal * (1 + margen / 100);
-      const ganancia = precioVenta - costoTotal;
+      const costoTotalUnitario = costoCeraPorVela + costoFraganciaPorVela + costoColorantePorVela + costoMecha + costoFrasco + costoEtiqueta + costoIndirecto;
+      const precioVentaUnitario = costoTotalUnitario * (1 + margen / 100);
+      const gananciaUnitario = precioVentaUnitario - costoTotalUnitario;
+
+      const costoTotal = costoTotalUnitario * cantidadVelas;
+      const precioTotalVenta = precioVentaUnitario * cantidadVelas;
+      const gananciaTotal = gananciaUnitario * cantidadVelas;
 
       document.getElementById('resultado').innerHTML =
-        `<p><strong>Costo de cera:</strong> $${costoCeraPorVela.toFixed(2)}</p>` +
-        `<p><strong>Costo de fragancia:</strong> $${costoFraganciaPorVela.toFixed(2)}</p>` +
-        `<p><strong>Costo de colorante:</strong> $${costoColorantePorVela.toFixed(2)}</p>` +
+        `<p><strong>Velas a producir:</strong> ${cantidadVelas}</p>` +
+        `<p><strong>Costo de cera por vela:</strong> $${costoCeraPorVela.toFixed(2)}</p>` +
+        `<p><strong>Costo de fragancia por vela:</strong> $${costoFraganciaPorVela.toFixed(2)}</p>` +
+        `<p><strong>Costo de colorante por vela:</strong> $${costoColorantePorVela.toFixed(2)}</p>` +
         `<p><strong>Mecha/Pabilo:</strong> $${costoMecha.toFixed(2)}</p>` +
         `<p><strong>Frasco:</strong> $${costoFrasco.toFixed(2)}</p>` +
         `<p><strong>Etiqueta:</strong> $${costoEtiqueta.toFixed(2)}</p>` +
         `<p><strong>Costos indirectos:</strong> $${costoIndirecto.toFixed(2)}</p>` +
-        `<hr><p><strong>Costo total por vela:</strong> $${costoTotal.toFixed(2)}</p>` +
-        `<p><strong>Precio sugerido de venta (con ${margen}% de margen):</strong> $${precioVenta.toFixed(2)}</p>` +
-        `<p><strong>Ganancia estimada por vela:</strong> $${ganancia.toFixed(2)}</p>`;
+        `<hr><p><strong>Costo total unitario:</strong> $${costoTotalUnitario.toFixed(2)}</p>` +
+        `<p><strong>Precio sugerido de venta por unidad (con ${margen}% de margen):</strong> $${precioVentaUnitario.toFixed(2)}</p>` +
+        `<p><strong>Ganancia estimada por unidad:</strong> $${gananciaUnitario.toFixed(2)}</p>` +
+        `<hr><p><strong>Costo total para ${cantidadVelas} velas:</strong> $${costoTotal.toFixed(2)}</p>` +
+        `<p><strong>Precio total sugerido de venta:</strong> $${precioTotalVenta.toFixed(2)}</p>` +
+        `<p><strong>Ganancia total estimada:</strong> $${gananciaTotal.toFixed(2)}</p>`;
     }
   </script>
 </body>
