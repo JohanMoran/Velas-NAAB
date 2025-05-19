@@ -11,10 +11,11 @@
       padding: 20px;
       display: flex;
       gap: 30px;
+      max-width: 1200px;
+      margin: auto;
     }
     .contenedor-principal {
       flex: 1;
-      max-width: 600px;
     }
     h1 {
       color: #d97a9b;
@@ -71,7 +72,6 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      max-width: 350px;
       height: fit-content;
     }
     .desglose h3 {
@@ -81,7 +81,7 @@
 </head>
 <body>
   <div class="contenedor-principal">
-    <img src="soluna.png" alt="Logo Soluna" id="logo">
+    <img src="Soluna.png" alt="Logo Soluna" id="logo">
     <h1>Calculadora de Costos de Velas Artesanales</h1>
 
     <div class="section">
