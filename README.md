@@ -156,6 +156,11 @@
       const costoIndirecto = parseFloat(document.getElementById('costoIndirecto').value);
       const margen = parseFloat(document.getElementById('margen').value);
 
+      if ([costoCera, gramosCera, costoFragancia, tamanoFragancia, porcentajeFragancia, costoColorante, usoColorante, cantidadColorante, costoMecha, costoFrasco, costoEtiqueta, costoIndirecto, margen].some(isNaN)) {
+        alert("Por favor completa todos los campos antes de calcular.");
+        return;
+      }
+
       const costoPorGramoCera = costoCera / 1000;
       const costoCeraPorVela = costoPorGramoCera * gramosCera;
 
